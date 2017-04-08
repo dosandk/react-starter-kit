@@ -1,25 +1,25 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { TestComponent } from './components/test';
 import { AppContainer } from 'react-hot-loader';
+import configureStore from './store';
+import Root from './containers/root';
 
 import 'styles/_base.scss';
 
+const store = configureStore();
 const appContainer = document.getElementById('app');
 
-const renderWrapper = Component => {
+const renderWrapper = () => {
   render(
     <AppContainer>
-      <Component/>
+      <Root store={ store }/>
     </AppContainer>,
     appContainer
   );
 };
 
-renderWrapper(TestComponent);
+renderWrapper();
 
 if (module.hot) {
-  module.hot.accept('./components/test', () => {
-    renderWrapper(TestComponent);
-  });
+  module.hot.accept('./containers/root.js', renderWrapper);
 }
