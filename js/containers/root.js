@@ -1,13 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Counter from './counter';
+import { Router, browserHistory } from 'react-router';
+import Routes from './routes';
 
-const Root = ({ store }) => {
-  return (
-    <Provider store={ store }>
-      <Counter />
-    </Provider>
-  );
-};
+const Root = ({ store }) => (
+  <Provider store={ store }>
+    <Router history={ browserHistory } routes={ Routes } />
+  </Provider>
+);
 
 export default Root;

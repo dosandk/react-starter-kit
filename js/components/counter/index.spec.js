@@ -1,9 +1,9 @@
 import React from 'react';
-import TestComponent from './index';
+import Counter from './index';
 import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
-  const tree = renderer.create(<TestComponent/>).toJSON();
+  const tree = renderer.create(<Counter/>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

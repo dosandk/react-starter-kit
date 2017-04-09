@@ -9,7 +9,7 @@ import 'styles/_base.scss';
 const store = configureStore();
 const appContainer = document.getElementById('app');
 
-const renderWrapper = () => {
+const renderApp = () => {
   render(
     <AppContainer>
       <Root store={ store }/>
@@ -18,8 +18,8 @@ const renderWrapper = () => {
   );
 };
 
-renderWrapper();
+renderApp();
 
 if (module.hot) {
-  module.hot.accept('./containers/root.js', renderWrapper);
+  module.hot.accept('./containers/root.js', renderApp);
 }
