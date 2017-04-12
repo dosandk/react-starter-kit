@@ -3,22 +3,11 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: [
-    'react-hot-loader/patch',
-    // activate HMR for React
-
-    'webpack-dev-server/client?http://localhost:3000',
-    // bundle the client for webpack-dev-server
-    // and connect to the provided endpoint
-
-    'webpack/hot/only-dev-server',
-    // bundle the client for hot reloading
-    // only- means to only hot reload for successful updates
     './js/main.js'
   ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../'),
-    publicPath: '/'
+    path: path.resolve(__dirname, '../')
   },
   devtool: 'cheap-module-eval-source-map',
   module: {
@@ -66,19 +55,14 @@ module.exports = {
       },
     ]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-  ],
+  plugins: [],
   resolve: {
     alias: {
       styles: path.resolve(__dirname, '../styles/'),
     }
   },
   devServer: {
-    hot: true,
     contentBase: path.join(__dirname, '../'), // match the output path
-    publicPath: '/',  // match the output `publicPath`
     compress: true,
     port: 3000,
     historyApiFallback: true

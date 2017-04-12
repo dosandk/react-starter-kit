@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
 import configureStore from './store';
 import Root from './containers/root';
 
@@ -10,16 +9,7 @@ const store = configureStore();
 const appContainer = document.getElementById('app');
 
 const renderApp = () => {
-  render(
-    <AppContainer>
-      <Root store={ store }/>
-    </AppContainer>,
-    appContainer
-  );
+  render(<Root store={ store }/>, appContainer);
 };
 
 renderApp();
-
-if (module.hot) {
-  module.hot.accept('./containers/root.js', renderApp);
-}
