@@ -5,7 +5,12 @@ import Root from './containers/root';
 
 import 'styles/_base.scss';
 
-const store = configureStore();
+const initStore = {
+  messages: [],
+  loader: false,
+  counter: 0
+};
+const store = configureStore(initStore);
 const appContainer = document.getElementById('app');
 
 const renderApp = () => {
