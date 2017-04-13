@@ -1,11 +1,14 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import Routes from './routes';
+import { ConnectedRouter } from 'react-router-redux';
+import history from '../history';
+import Routes from '../containers/routes';
 
 const Root = ({ store }) => (
   <Provider store={ store }>
-    <Router history={ browserHistory } routes={ Routes } />
+    <ConnectedRouter history={ history } >
+      <Routes/>
+    </ConnectedRouter>
   </Provider>
 );
 

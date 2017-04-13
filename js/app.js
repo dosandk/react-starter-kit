@@ -1,11 +1,12 @@
 import React from 'react';
 import Index from './components/index';
+import { Route } from 'react-router-dom';
 
 const App = ({ children }) => (
-  <div>
+  <Route>
     <Index />
     { children }
-  </div>
+  </Route>
 );
 
 export default App;
