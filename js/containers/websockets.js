@@ -1,26 +1,23 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as ws from '../utils/ws';
+import * as chatActions from '../actions/chat';
 
 class Websockets extends Component {
-  constructor(...args) {
-    super(...args);
+  componentWillReceiveProps({ user }) {
+    if (user && user.username) {
+      const { sendMessage, joinChat, leaveChat } = this.props;
 
-    this.connection = new WebSocket('ws://front-camp-chat.herokuapp.com/');
-  }
-  componentDidMount() {
-    this.connection.onmessage = this.addMessage;
-    this.connection.onerror = this.onError;
-  }
-  onError() {
-    console.error('onError');
-  }
-  addMessage() {
-    console.error('addMessage');
+      ws.initConnection();
+      ws.addListener('message', sendMessage);
+      ws.addListener('join', joinChat);
+      ws.addListener('leave', leaveChat);
+    }
   }
   componentWillUnmount() {
-    if (this.connection) {
-      this.connection = null;
-    }
+    // TODO: add event for closing socket
   }
   shouldComponentUpdate() {
     return false;
@@ -30,6 +27,7 @@ class Websockets extends Component {
   }
 }
 
-const mapStateToProps = ({ messages }) => ({ messages });
+const mapStateToProps = ({ user }) => ({ user });
+const mapActionsToProps = dispatch => bindActionCreators(chatActions, dispatch);
 
-export default connect(mapStateToProps)(Websockets);
+export default connect(mapStateToProps, mapActionsToProps)(Websockets);
