@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Login from '../components/login';
+import ChatContainer from './chat';
 import * as loginActions from '../actions/login';
 
 class LoginContainer extends Component {
   render() {
     return (
-      <Login {...this.props} />
+      <div>
+        <Login {...this.props} />
+        <ChatContainer />
+      </div>
     );
   }
 }

@@ -1,21 +1,13 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { sendMessge, initConnection } from '../utils/ws';
 
 class Websockets extends Component {
-  constructor(...args) {
-    super(...args);
-
-    this.connection = new WebSocket('ws://front-camp-chat.herokuapp.com/');
-  }
-  componentDidMount() {
-    this.connection.onmessage = this.addMessage;
-    this.connection.onerror = this.onError;
-  }
-  onError() {
-    console.error('onError');
-  }
-  addMessage() {
-    console.error('addMessage');
+  componentWillReceiveProps({ user }) {
+    if (user && user.username) {
+      initConnection();
+      sendMessge('ribaaaaa');
+    }
   }
   componentWillUnmount() {
     if (this.connection) {
@@ -30,6 +22,6 @@ class Websockets extends Component {
   }
 }
 
-const mapStateToProps = ({ messages }) => ({ messages });
+const mapStateToProps = ({ user }) => ({ user });
 
 export default connect(mapStateToProps)(Websockets);
