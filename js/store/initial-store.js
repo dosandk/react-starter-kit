@@ -1,7 +1,7 @@
 const initialStore = {
+  user: {},
   counter: 0,
-  router: {},
-  messages: []
+  router: {}
 };
 
 export default initialStore;

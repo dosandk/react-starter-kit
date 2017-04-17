@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Login from '../components/login';
-import ChatContainer from './chat';
 import * as loginActions from '../actions/login';
 
 class LoginContainer extends Component {
@@ -11,7 +10,6 @@ class LoginContainer extends Component {
     return (
       <div>
         <Login {...this.props} />
-        <ChatContainer />
       </div>
     );
   }
